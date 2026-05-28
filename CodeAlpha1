@@ -1,0 +1,37 @@
+# Import Libraries
+import pandas as pd
+import matplotlib.pyplot as plt
+# Load Dataset
+df = pd.read_csv("dataset.csv")
+# Display First 5 Rows
+print("First 5 Rows of Dataset:")
+print(df.head())
+# Dataset Information
+print("\nDataset Information:")
+print(df.info())
+# Check Missing Values
+print("\nMissing Values:")
+print(df.isnull().sum())
+# Summary Statistics
+print("\nSummary Statistics:")
+print(df.describe())
+# Display Column Names
+print("\nColumn Names:")
+print(df.columns)
+# Select Numerical Columns
+numeric_cols = df.select_dtypes(include=['float64', 'int64']).columns
+# Plot Graph for Unemployment Trend
+plt.figure(figsize=(10,5))
+df[numeric_cols[0]].dropna().plot(kind='line')
+plt.title("Unemployment Rate Trend")
+plt.xlabel("Index")
+plt.ylabel(numeric_cols[0])
+plt.grid(True)
+plt.show()
+# Correlation Matrix
+print("\nCorrelation Matrix:")
+print(df.corr(numeric_only=True))
+# Histogram of Numerical Data
+df[numeric_cols].hist(figsize=(10,8))
+plt.show()
+print("\nTask-2: Unemployment Analysis Completed Successfully")
